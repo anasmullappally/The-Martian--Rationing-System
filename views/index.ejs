@@ -2,10 +2,228 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    \
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% include header.ejs %>
+    <!-- table -->
+
+    <div class="container">
+      <br />
+      <h3>Supplies Table</h3>
+      <hr />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Packet Id</th>
+            <th>Packet Type</th>
+            <th>Packet Content</th>
+            <th>Calories</th>
+            <th>Expiry Date</th>
+            <th>Qty In Litres</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>W2</td>
+            <td>hj</td>
+            <td>chips</td>
+            <td>1500</td>
+            <td>12/5/888</td>
+            <td>2</td>
+            <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- table end -->
+    <div class="modal fade" id="addfood" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+            <h4 class="modal-title">Add Food</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/food" method="post" id="food_form">
+              <div class="row">
+                <div class="col-sm-4">
+  
+                  <div class="form-group">
+                    <label for="packet_id">Packet Id</label>
+                    <input type="text" class="form-control" id="packet_id" placeholder="Packet Id" name="packet_id">
+                  </div>
+  
+                </div>
+                <div class="col-sm-4">
+                  
+                  <div class="form-group">
+                    <label for="packet_content">Packet Content</label>
+                    <input type="text" class="form-control" id="packet_content" placeholder="Packet Content" name="packet_content">
+                  </div>
+  
+                </div>
+                <div class="col-sm-4">
+                  
+                  <div class="form-group">
+                    <label for="expiry_date">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiry_date" placeholder="Enter Date" name="expiry_date">
+                  </div>
+  
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-sm-4">
+  
+                  <div class="form-group">
+                    <label for="calories">Calories</label>
+                    <input type="number" class="form-control" id="calories" placeholder="Calories" name="calories">
+                  </div>
+  
+                </div>
+                
+              </div>
+              
+            </form>  
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success">Add Food Packet</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    <!-- Modal for FOOD -->
+    <div class="modal fade" id="addFood" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+            <h4 class="modal-title">Add Food</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/food" method="post" id="food_form">
+              <div class="row">
+                <div class="col-sm-4">
+  
+                  <div class="form-group">
+                    <label for="packet_id">Packet Id</label>
+                    <input type="text" class="form-control" id="packet_id" placeholder="Packet Id" name="packet_id">
+                  </div>
+  
+                </div>
+                <div class="col-sm-4">
+                  
+                  <div class="form-group">
+                    <label for="packet_content">Packet Content</label>
+                    <input type="text" class="form-control" id="packet_content" placeholder="Packet Content" name="packet_content">
+                  </div>
+  
+                </div>
+                <div class="col-sm-4">
+                  
+                  <div class="form-group">
+                    <label for="expiry_date">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiry_date" placeholder="Enter Date" name="expiry_date">
+                  </div>
+  
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-sm-4">
+  
+                  <div class="form-group">
+                    <label for="calories">Calories</label>
+                    <input type="number" class="form-control" id="calories" placeholder="Calories" name="calories">
+                  </div>
+  
+                </div>
+                
+              </div>
+              
+            </form>  
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" >Add Food Packet</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    <!-- Modal for WATER -->
+    <div class="modal fade" id="addWater" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+            <h4 class="modal-title">Add Water</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/water" method="post" id="water_form">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="packet_id">Packet Id</label>
+                    <input type="text" class="form-control" id="packet_id" placeholder="Packet Id" name="packet_id">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="calories">Qty In Litres</label>
+                    <input type="number" class="form-control" id="qty_in_litres" placeholder="Qty In Litres" name="qty_in_litres">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success">Add Water Packet</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </body>
 </html>
+<script
+  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+  crossorigin="anonymous"
+></script>
+<script>
+   function openAddFood() {
+        $('#addFood').modal('show');
+    }
+
+    function openAddWater() {
+        $('#addWater').modal('show');
+    }
+</script>

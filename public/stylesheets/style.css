@@ -1,8 +1,35 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.navbar {
+  overflow: hidden;
+  background-color: rgb(240, 214, 214);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-a {
-  color: #00B7FF;
+.navbar h3 {
+  float: left;
+  display: block;
+  color: #1f1a1a;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+.container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image  td, th {
+    vertical-align: start;
+  
 }
