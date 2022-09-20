@@ -8,7 +8,6 @@ const rationSchema = new mongoose.Schema({
   packetId: {
     type: String,
     required: true,
-    unique: true,
   },
   packetContent: {
     type: String,

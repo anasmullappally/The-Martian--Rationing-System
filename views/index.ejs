@@ -42,22 +42,27 @@
               <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
             </tr> -->
             <% for(var i = 0; i < supplies.length; i++){ %>
-              <tr>
-                <td><%= supplies[i].packetId %></td>
-                <% if(supplies[i].packetType === 'food'){ %>
-                  <td>Food</td>
-                <% } else if (supplies[i].packetType == 'water') { %>
-                  <td>Water</td>
-                <% } %>
-                
-                <td><%= supplies[i].packetContent %></td>
-                <td><%= supplies[i].calories %></td>
-                <td><%= supplies[i].expiryDate %></td>
-                <td><%= supplies[i].quantityInLiters %></td>
-                <td><a href="javascript:deleteSuppliesPacket('<%=supplies[i]._id %>')" class="btn btn-danger">Delete</a></td>
-              </tr>
-            <% } %>
+            <tr>
+              <td><%= supplies[i].packetId %></td>
+              <% if(supplies[i].packetType === 'food'){ %>
+              <td>Food</td>
+              <% } else if (supplies[i].packetType == 'water') { %>
+              <td>Water</td>
+              <% } %>
 
+              <td><%= supplies[i].packetContent %></td>
+              <td><%= supplies[i].calories %></td>
+              <td><%= supplies[i].expiryDate %></td>
+              <td><%= supplies[i].quantityInLiters %></td>
+              <td>
+                <a
+                  href="javascript:deleteSuppliesPacket('<%=supplies[i]._id %>')"
+                  class="btn btn-danger"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -83,6 +88,7 @@
                     <div class="form-group">
                       <label for="packetId">Packet Id</label>
                       <input
+                        required
                         type="text"
                         class="form-control"
                         id="packetId"
@@ -95,6 +101,7 @@
                     <div class="form-group">
                       <label for="packetContent">Packet Content</label>
                       <input
+                        required
                         type="text"
                         class="form-control"
                         id="packetContent"
@@ -107,7 +114,8 @@
                     <div class="form-group">
                       <label for="expiryDate">Expiry Date</label>
                       <input
-                        type="text"
+                        required
+                        type="date"
                         class="form-control"
                         id="expiryDate"
                         placeholder="Enter Date"
@@ -122,6 +130,7 @@
                     <div class="form-group">
                       <label for="calories">Calories</label>
                       <input
+                        required
                         type="number"
                         class="form-control"
                         id="calories"
@@ -211,6 +220,60 @@
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <h3>Schedule Table</h3>
+        <hr />
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Schedule Date</th>
+              <th>Packet Id</th>
+              <th>Packet Type</th>
+              <th>Packet Content</th>
+              <th>Calories</th>
+              <th>Expiry Date</th>
+              <th>Qty In Litres</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < output.length; i++){ %> <% for(var j = 0; j <
+            output[i].waters.length; j++){ %>
+            <tr>
+              <% if( j==0) {%>
+              <td
+                rowspan="<%= output[i].foods.length + output[i].waters.length %>"
+                class="text-center"
+              >
+                <%= output[i].date %>
+              </td>
+              <% } %>
+              <td><%= output[i].waters[j].packetId %></td>
+              <td>Water</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= output[i].waters[j].quantityInLiters %></td>
+            </tr>
+            <% } %> <% for(var j = 0; j < output[i].foods.length; j++){ %>
+            <tr>
+              <td><%= output[i].foods[j].packetId %></td>
+              <td>Food</td>
+              <td><%= output[i].foods[j].packetContent %></td>
+              <td><%= output[i].foods[j].calories %></td>
+              <td><%= output[i].foods[j].expiryDate %></td>
+              <td>-</td>
+            </tr>
+            <% } %> <% } %>
+          </tbody>
+        </table>
+        <br />
+        <h2>
+          Number of days you can survive with current inventory : <%=
+          output.length %>
+        </h2>
+        <br />
+      </div>
     </section>
   </body>
 </html>
@@ -232,14 +295,14 @@
     $("#addWater").modal("show");
   }
   function submitFoodPacket() {
-    $( "#foodForm" ).submit();
+    $("#foodForm").submit();
   }
   function submitWaterPacket() {
-    $( "#waterForm" ).submit();
+    $("#waterForm").submit();
   }
-  function deleteSuppliesPacket(packetId){
-      if(confirm("Are you sure you want to delete?")){
-        window.location.href = "/packetDelete/"+packetId;
-      }
+  function deleteSuppliesPacket(packetId) {
+    if (confirm("Are you sure you want to delete?")) {
+      window.location.href = "/packetDelete/" + packetId;
     }
+  }
 </script>
