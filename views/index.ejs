@@ -44,9 +44,9 @@
             <% for(var i = 0; i < supplies.length; i++){ %>
               <tr>
                 <td><%= supplies[i].packetId %></td>
-                <% if(supplies[i].food ){ %>
+                <% if(supplies[i].packetType === 'food'){ %>
                   <td>Food</td>
-                <% } else if (supplies[i].water ) { %>
+                <% } else if (supplies[i].packetType == 'water') { %>
                   <td>Water</td>
                 <% } %>
                 
@@ -54,7 +54,7 @@
                 <td><%= supplies[i].calories %></td>
                 <td><%= supplies[i].expiryDate %></td>
                 <td><%= supplies[i].quantityInLiters %></td>
-                <td><a  class="btn btn-danger">Delete</a></td>
+                <td><a href="javascript:deleteSuppliesPacket('<%=supplies[i]._id %>')" class="btn btn-danger">Delete</a></td>
               </tr>
             <% } %>
 
@@ -237,4 +237,9 @@
   function submitWaterPacket() {
     $( "#waterForm" ).submit();
   }
+  function deleteSuppliesPacket(packetId){
+      if(confirm("Are you sure you want to delete?")){
+        window.location.href = "/packetDelete/"+packetId;
+      }
+    }
 </script>
