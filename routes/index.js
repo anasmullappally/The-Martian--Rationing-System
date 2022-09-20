@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../Controller/controller')
+var {addFood, addWater, homePage} = require('../Controller/controller')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  let sup = [{a:'1',b:2},{a:'1',b:2},{a:'1',b:2}]
-  res.render('index', { title: 'Express',supplies:sup });
-});
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'RATION SYSTEM'});
+// });
+router.get('/',homePage)
+
+router.post('/food',addFood)
+router.post('/water',addWater)
 
 module.exports = router;
