@@ -3,13 +3,7 @@ const addFood = async (req, res) => {
   try {
     let foodDetails = req.body;
     foodDetails.packetType = "food";
-    let packetId = foodDetails.packetId;
-    let packetContent = foodDetails.packetContent;
-    let expiryDate = foodDetails.expiryDate;
-    let calories = parseInt(foodDetails.calories);
-    let dateArr = expiryDate.split("/");
-    expiryDate = dateArr[2] + "-" + dateArr[1] + "-" + dateArr[0];
-    let data = await rationModel.create(foodDetails);
+    await rationModel.create(foodDetails);
     res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -19,9 +13,7 @@ const addWater = async (req, res) => {
   try {
     let waterDetails = req.body;
     waterDetails.packetType = "water";
-    let packetId = waterDetails.packetId;
-    let quantityInLiters = parseInt(waterDetails.quantityInLiters);
-    let data = await rationModel.create(waterDetails);
+    await rationModel.create(waterDetails);
     res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -29,9 +21,8 @@ const addWater = async (req, res) => {
 };
 const deletePacket = async (req, res) => {
   let productId = req.params.productId;
-  await rationModel.updateOne(
-    { _id: productId },
-    { $set: { isDeleted: true } }
+  await rationModel.deleteOne(
+    { _id: productId }
   );
   res.redirect("/");
 };
@@ -131,11 +122,10 @@ const homePage = async (req, res) => {
 
   surviveDays = finalResult.length;
 
-  // console.log("final datas : ", supplies, finalResult, dailySupplies, surviveDays);
+  // console.log("final datas : ", finalResult, dailySupplies, surviveDays);
   if (typeof req.query.api != "undefined" && req.query.api == 1) {
-    res.json({ supplies, output: outputArr });
+    res.json({ supplies, output: finalResult });
   } else {
-    // res.send(dailySupplies)
     res.render("index", {
       title: "The Martian - Rationing System",
       supplies,
@@ -143,8 +133,7 @@ const homePage = async (req, res) => {
       surviveDays,
     });
   }
-  //   let inventory = await rationModel.find({ isDeleted: false });
-  //   res.render("index", { title: "RATION SYSTEM", supplies: inventory });
+
 };
 
 module.exports = {

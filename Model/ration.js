@@ -18,10 +18,6 @@ const rationSchema = new mongoose.Schema({
   calories: {
     type: Number,
   },
-  isDeleted: {
-    type: Boolean,
-    default: false,
-  },
   quantityInLiters: {
     type: Number,
   },

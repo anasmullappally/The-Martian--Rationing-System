@@ -32,15 +32,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr>
-              <td>W2</td>
-              <td>hj</td>
-              <td>chips</td>
-              <td>1500</td>
-              <td>12/5/888</td>
-              <td>2</td>
-              <td><a href="" class="btn btn-danger btn-sm">Delete</a></td>
-            </tr> -->
             <% for(var i = 0; i < supplies.length; i++){ %>
             <tr>
               <td><%= supplies[i].packetId %></td>
@@ -124,22 +115,20 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="calories">Calories</label>
-                      <input
-                        required
-                        type="number"
-                        class="form-control"
-                        id="calories"
-                        placeholder="Calories"
-                        name="calories"
-                      />
-                    </div>
+                  <div class="form-group col-md-4">
+                    <label for="calories">Calories</label>
+                    <select id="inputState" class="form-control"  name="calories"   type="number">
+                      <option >choose</option>
+                      <option value="500" >500</option>
+                      <option value="1000">1000</option>
+                      <option value="1500">1500</option>
+                      <option value="2000">2000</option>
+                      <option value="2500">2500</option>
+                    </select>
                   </div>
                 </div>
+                
               </form>
             </div>
             <div class="modal-footer">
@@ -186,18 +175,15 @@
                       />
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for=" quantityInLiters">Qty In Litres</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id=" quantityInLiters"
-                        placeholder="Quantity In Liters"
-                        name="quantityInLiters"
-                      />
-                    </div>
+                  <div class="form-group col-sm-4">
+                    <label for=" quantityInLiters">Qty In Litres</label>
+                    <select id="inputState" class="form-control"   name="quantityInLiters"   type="number">
+                      <option >choose</option>
+                      <option value="1" >1</option>
+                      <option value="2" >2</option>
+                    </select>
                   </div>
+                  
                 </div>
               </form>
             </div>
