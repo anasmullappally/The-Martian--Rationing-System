@@ -80,8 +80,9 @@ const homePage = async (req, res) => {
             isOk: false,
           });
           currentIndex += 2;
+        } else{
+          currentIndex += 1;
         }
-        currentIndex += 1;
       } else {
         dailySupplies.push({
           waters: [waterArr[currentIndex]],
@@ -122,7 +123,7 @@ const homePage = async (req, res) => {
 
   surviveDays = finalResult.length;
 
-  // console.log("final datas : ", finalResult, dailySupplies, surviveDays);
+  // console.log("final datas : ", finalResult, dailySupplies, waterArr );
   if (typeof req.query.api != "undefined" && req.query.api == 1) {
     res.json({ supplies, output: finalResult });
   } else {
